@@ -46,7 +46,7 @@ function formatNoteFileName({ title, createdAt }) {
 
     const maxWords = 10;
     const formattedTitle = title
-        .replace(/[^\w\d\p{L}\p{N}\s.-_]/gu, '')
+        .replace(/[^\w\d\p{L}\p{N}\s._-]/gu, '')
         .split(' ').filter(word => word !== '')
         .slice(0, maxWords).join(' ');
 
