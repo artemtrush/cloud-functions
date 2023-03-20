@@ -42,7 +42,7 @@ function formatNoteFileName({ title, createdAt }) {
     const date = new Date(datePart);
 
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
 
     const maxWords = 10;
     const formattedTitle = title
