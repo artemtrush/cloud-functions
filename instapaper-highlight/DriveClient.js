@@ -1,12 +1,12 @@
 const { google } = require('googleapis');
 
 class DriveClient {
-    constructor({ clientId, clientSecret, refreshToken }) {
-        const authClient = new google.auth.OAuth2({ clientId, clientSecret });
+    constructor({ authCredentials }) {
+        const auth = google.auth.fromJSON(authCredentials);
 
-        authClient.setCredentials({ refresh_token: refreshToken });
+        auth.scopes = [ 'https://www.googleapis.com/auth/drive' ];
 
-        this._drive = google.drive({ version: 'v3', auth: authClient });
+        this._drive = google.drive({ version: 'v3', auth });
     }
 
     async appendTextToFile({ folderId, fileName, text }) {
