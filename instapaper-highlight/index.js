@@ -1,6 +1,5 @@
-const fs = require('fs')
 const DriveClient = require('./DriveClient');
-const { GOOGLE_APPLICATION_CREDENTIALS, FOLDER_ID, CLOUD_TOKEN } = process.env;
+const { FOLDER_ID, CLOUD_TOKEN } = process.env;
 
 async function main(req, res) {
     try {
@@ -15,9 +14,7 @@ async function main(req, res) {
         const fileName = formatNoteFileName({ title, createdAt });
         const noteText = formatNoteText({ text, comment });
 
-        const driveClient = new DriveClient({
-            authCredentials: JSON.parse(fs.readFileSync(GOOGLE_APPLICATION_CREDENTIALS))
-        });
+        const driveClient = new DriveClient();
 
         const fileId = await driveClient.appendTextToFile({
             text: noteText,

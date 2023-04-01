@@ -1,10 +1,11 @@
 const { google } = require('googleapis');
 
 class DriveClient {
-    constructor({ authCredentials }) {
-        const auth = google.auth.fromJSON(authCredentials);
-
-        auth.scopes = [ 'https://www.googleapis.com/auth/drive' ];
+    constructor() {
+        // Automatically takes GOOGLE_APPLICATION_CREDENTIALS from environment
+        const auth = new google.auth.GoogleAuth({
+            scopes: 'https://www.googleapis.com/auth/drive',
+        });
 
         this._drive = google.drive({ version: 'v3', auth });
     }
